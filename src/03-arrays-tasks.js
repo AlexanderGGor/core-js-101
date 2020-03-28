@@ -7,7 +7,7 @@
  *                                                                                            *
  ******************************************************************************************** */
 
-const log = (str) => console.log(str);
+// const log = (str) => console.log(str);
 /**
  * Returns an index of the specified element in array or -1 if element is not found
  *
@@ -565,7 +565,7 @@ function getElementByIndexes(/* arr, indexes */) {
 function swapHeadAndTail(/* arr */) {
   throw new Error('Not implemented');
 }
-log('end');
+// log('end');
 
 module.exports = {
   findElement,
