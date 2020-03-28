@@ -16,9 +16,9 @@ module.exports = {
     ecmaVersion: 2018,
   },
   rules: {
-        "linebreak-style": 0,
-       // "no-multiple-empty-lines": [2, {"max": 4}],
-        'no-plusplus': 'off',
-        'arrow-parens': [2, "as-needed"]
+    "linebreak-style": 0,
+    // "no-multiple-empty-lines": [2, {"max": 4}],
+    // 'no-plusplus': 'off',
+    // 'arrow-parens': [2, "as-needed"]
   },
 };
