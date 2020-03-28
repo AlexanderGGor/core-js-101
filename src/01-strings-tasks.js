@@ -291,7 +291,6 @@ function getCardId(value) {
   return card.indexOf(value);
 }
 
-
 module.exports = {
   concatenateStrings,
   getStringLength,
