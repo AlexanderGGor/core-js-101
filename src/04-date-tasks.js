@@ -6,8 +6,8 @@
  *                                                                                           *
  ******************************************************************************************* */
 
-const log = (str) => console.log(str);
-log('end');
+// const log = (str) => console.log(str);
+// log('end');
 
 /**
  * Parses a rfc2822 string date representation into date value
