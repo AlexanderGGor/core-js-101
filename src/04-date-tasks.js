@@ -6,6 +6,8 @@
  *                                                                                           *
  ******************************************************************************************* */
 
+const log = (str) => console.log(str);
+log('end');
 
 /**
  * Parses a rfc2822 string date representation into date value
@@ -19,8 +21,8 @@
  *    'Tue, 26 Jan 2016 13:48:02 GMT' => Date()
  *    'Sun, 17 May 1998 03:00:00 GMT+01' => Date()
  */
-function parseDataFromRfc2822(/* value */) {
-  throw new Error('Not implemented');
+function parseDataFromRfc2822(value) {
+  return Date.parse(value);
 }
 
 /**
@@ -34,8 +36,8 @@ function parseDataFromRfc2822(/* value */) {
  *    '2016-01-19T16:07:37+00:00'    => Date()
  *    '2016-01-19T08:07:37Z' => Date()
  */
-function parseDataFromIso8601(/* value */) {
-  throw new Error('Not implemented');
+function parseDataFromIso8601(value) {
+  return Date.parse(value);
 }
 
 
@@ -53,10 +55,18 @@ function parseDataFromIso8601(/* value */) {
  *    Date(2012,1,1)    => true
  *    Date(2015,1,1)    => false
  */
-function isLeapYear(/* date */) {
-  throw new Error('Not implemented');
+function isLeapYear(date) {
+  // if (year is not divisible by 4) then (it is a common year)
+  // else if (year is not divisible by 100) then (it is a leap year)
+  // else if (year is not divisible by 400) then (it is a common year)
+  // else (it is a leap year)
+  const year = date.getFullYear();
+  // log(year); log(year % 4);
+  if (year % 4 !== 0) return false;
+  if (year % 100 !== 0) return true;
+  if (year % 400 !== 0) return false;
+  return true;
 }
-
 
 /**
  * Returns the string represention of the timespan between two dates.
