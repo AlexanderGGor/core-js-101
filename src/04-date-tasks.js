@@ -83,10 +83,18 @@ function isLeapYear(date) {
  *    Date(2000,1,1,10,0,0),  Date(2000,1,1,10,0,0,250)     => "00:00:00.250"
  *    Date(2000,1,1,10,0,0),  Date(2000,1,1,15,20,10,453)   => "05:20:10.453"
  */
-function timeSpanToString(/* startDate, endDate */) {
-  throw new Error('Not implemented');
+function timeSpanToString(startDate, endDate) {
+  let difference = endDate.getTime() - startDate.getTime();
+  const hours = `0${Math.floor(difference / (1000 * 60 * 60))}`.slice(-2);
+  difference -= hours * 60 * 60 * 1000;
+  const minutes = `0${Math.floor(difference / (1000 * 60))}`.slice(-2);
+  difference -= minutes * 60 * 1000;
+  const seconds = `0${Math.floor(difference / (1000))}`.slice(-2);
+  difference -= seconds * 1000;
+  const miliseconds = `00${difference}`.slice(-3);
+  return `${hours}:${minutes}:${seconds}.${miliseconds}`;
 }
-
+// timeSpanToString(Date(2000, 1, 1, 10, 0, 0), Date(2000, 1, 1, 11, 0, 0));
 
 /**
  * Returns the angle (in radians) between the hands of an analog clock
@@ -104,8 +112,13 @@ function timeSpanToString(/* startDate, endDate */) {
  *    Date.UTC(2016,3,5,18, 0) => Math.PI
  *    Date.UTC(2016,3,5,21, 0) => Math.PI/2
  */
-function angleBetweenClockHands(/* date */) {
-  throw new Error('Not implemented');
+function angleBetweenClockHands(date) {
+  const minutes = date.getUTCMinutes();
+  let hours = date.getUTCHours();
+  if (hours > 12) hours -= 12;
+  let difference = 60 * hours - 11 * minutes;
+  if (difference > 360) difference = Math.abs(difference) - 360;
+  return (0.5 * Math.PI * Math.abs(difference)) / 180;
 }
 
 
