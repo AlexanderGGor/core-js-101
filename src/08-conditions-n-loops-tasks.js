@@ -5,7 +5,8 @@
  * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Loops_and_iteration              *
  *                                                                                                *
  ************************************************************************************************ */
-
+// const log = (str) => console.log(str);
+// log('end');
 
 /**
  * Returns the 'Fizz','Buzz' or an original number using the following rules:

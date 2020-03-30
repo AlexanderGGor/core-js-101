@@ -4,8 +4,6 @@
  * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise       *
  *                                                                                                *
  ************************************************************************************************ */
-const log = (str) => console.log(str);
-log('end');
 
 /**
  * Return Promise object that is resolved with string value === 'Hooray!!! She said "Yes"!',
@@ -30,8 +28,21 @@ log('end');
  *                                                    //  Ask her again.';
  */
 function willYouMarryMe(isPositiveAnswer) {
-
+  const promise = new Promise((resolve, rejected) => {
+    if (typeof isPositiveAnswer !== 'boolean') rejected(new Error('Wrong parameter is passed! Ask her again.'));
+    // isPositiveAnswer ? resolve('Hooray!!! She said "Yes"!') : resolve('Oh no, she said "No".');
+    if (isPositiveAnswer) resolve('Hooray!!! She said "Yes"!');
+    else resolve('Oh no, she said "No".');
+  });
+  return promise;
 }
+// const p1 = willYouMarryMe(true);
+// p1.then(answer => console.log(answer + 'test'));
+// const p2 = willYouMarryMe(false);
+// p2.then(answer => console.log(answer));
+// const p3 = willYouMarryMe();
+// p3.then(answer => console.log(answer))
+// .catch((error) => console.log(error.message));
 
 
 /**
@@ -49,8 +60,8 @@ function willYouMarryMe(isPositiveAnswer) {
  *    })
  *
  */
-function processAllPromises(/* array */) {
-  throw new Error('Not implemented');
+function processAllPromises(array) {
+  return Promise.all(array);
 }
 
 /**
@@ -72,8 +83,8 @@ function processAllPromises(/* array */) {
  *    })
  *
  */
-function getFastestPromise(/* array */) {
-  throw new Error('Not implemented');
+function getFastestPromise(array) {
+  return Promise.race(array);
 }
 
 /**
@@ -93,8 +104,16 @@ function getFastestPromise(/* array */) {
  *    });
  *
  */
-function chainPromises(/* array, action */) {
-  throw new Error('Not implemented');
+function chainPromises(array, action) {
+  // log(action);
+  array.push(Promise.resolve());
+  let temp;
+  return array.reduce((collectionPromise, itemPromise, i) => collectionPromise.then((value) => {
+    if (!temp) temp = value;
+    else temp = action(temp, value);
+    if (i < array.length - 1) return itemPromise;
+    return new Promise((resolve) => resolve(temp));
+  }, (reason) => reason), Promise.resolve());
 }
 
 module.exports = {
