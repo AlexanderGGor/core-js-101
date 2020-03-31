@@ -8,6 +8,8 @@
  *                                                                                             *
  ********************************************************************************************* */
 
+// const log = (str) => console.log(str);
+// log('end');
 
 /**
  * Returns the functions composition of two specified functions f(x) and g(x).
